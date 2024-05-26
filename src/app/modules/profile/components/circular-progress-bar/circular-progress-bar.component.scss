@@ -10,6 +10,8 @@ svg {
     stroke-width: 7.5;
     fill: none;
     stroke-linecap: round;
+    transition: all 300ms;
+
   }
   .circle-fill {
     // stroke: var(--secondary);

@@ -1,9 +1,14 @@
 <div class="profile-container">
   <app-calendar
+    #calendar
     (dateSelected)="dailyCaloriesComponent.onDateSelected($event)"
     (dateSelected)="mealEntry.onDateSelected($event)"
   ></app-calendar>
   <app-daily-calories #dailyCaloriesComponent></app-daily-calories>
 
-  <app-meal-entry #mealEntry></app-meal-entry>
+  <app-meal-entry 
+  #mealEntry
+  (itemDeleted)="calendar.itemDeleted($event)" 
+  (itemDeleted)="dailyCaloriesComponent.itemDeleted($event)"
+  ></app-meal-entry>
 </div>

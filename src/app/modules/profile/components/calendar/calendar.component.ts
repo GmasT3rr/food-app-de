@@ -19,7 +19,7 @@ import { MatIcon } from '@angular/material/icon';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatIcon
+    MatIcon,
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
@@ -48,14 +48,7 @@ export class CalendarComponent {
   allUserSavedMeals: SavedMeal[] = [];
 
   constructor() {
-    const ITEM = localStorage.getItem('AllUserSavedMeals');
-
-    if (ITEM) {
-      const allUserSavedMeals = JSON.parse(ITEM);
-      this.allUserSavedMeals = allUserSavedMeals;
-    } else {
-      this.allUserSavedMeals = [];
-    }
+    this.getStorage();
   }
 
   ngOnInit(): void {
@@ -86,7 +79,7 @@ export class CalendarComponent {
       const date = new Date(firstDayOfWeek);
       date.setDate(firstDayOfWeek.getDate() + i);
       const dayOfWeekIndex = date.getDay();
-      const dayOfWeek = ['D', 'L', 'M', 'M', 'J', 'V', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
+      const dayOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
       const calories = this.getCaloriesForDay(date);
 
       this.currentWeek.push({
@@ -112,7 +105,7 @@ export class CalendarComponent {
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, this.selectedMonth, i);
       const dayOfWeekIndex = date.getDay();
-      const dayOfWeek = ['D', 'L', 'M', 'M', 'J', 'V', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
+      const dayOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
 
       // Puedes incluir aquí la lógica para obtener las calorías para cada día si es necesario
       // Ejemplo: const calories = this.getCaloriesForDay(date);
@@ -136,7 +129,7 @@ export class CalendarComponent {
       const calories = this.getCaloriesForDay(date);
 
       this.currentWeek.push({
-        name: ['D', 'L', 'M', 'M', 'J', 'V', 'S'][date.getDay()],
+        name: ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()],
         date: date,
         calories: calories,
       });
@@ -190,7 +183,7 @@ export class CalendarComponent {
       const date = new Date(targetFirstDayOfWeek);
       date.setDate(targetFirstDayOfWeek.getDate() + i);
       const dayOfWeekIndex = date.getDay();
-      const dayOfWeek = ['D', 'L', 'M', 'M', 'J', 'V', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
+      const dayOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'][dayOfWeekIndex]; // Array con los nombres de los días
       const calories = this.getCaloriesForDay(date);
 
       this.currentWeek.push({
@@ -201,5 +194,21 @@ export class CalendarComponent {
     }
     // Actualizar selectedMonth basado en el mes de cualquier día dentro de la semana actual
     this.selectedMonth = this.currentWeek[0].date.getMonth();
+  }
+
+  getStorage() {
+    const ITEM = localStorage.getItem('AllUserSavedMeals');
+    if (ITEM) {
+      const allUserSavedMeals = JSON.parse(ITEM);
+      this.allUserSavedMeals = allUserSavedMeals;
+    } else {
+      this.allUserSavedMeals = [];
+    }
+  }
+
+  itemDeleted(bool: boolean) {
+    this.getStorage();
+    this.navigateWeek(1)
+    this.navigateWeek(-1)
   }
 }

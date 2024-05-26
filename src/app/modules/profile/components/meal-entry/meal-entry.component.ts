@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Inject, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import moment from 'moment';
 import { SavedMeal } from '../../../../interfaces/savedMeals.interface';
@@ -15,6 +15,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   styleUrl: './meal-entry.component.scss',
 })
 export class MealEntryComponent {
+  @Output() itemDeleted = new EventEmitter<any>();
+
   allUserSavedMeals: SavedMeal[] = [];
   currentDayMeals: SavedMeal[] = [];
   totalNutrients: { [key: string]: { kcal: number; protein: number; carbs: number; fat: number } } = {};
@@ -35,7 +37,11 @@ export class MealEntryComponent {
         day: new Date(meal.day),
       }));
       this.filterMealsForCurrentDay(moment().toDate());
+    }else{
+    this.filterMealsForCurrentDay(moment().toDate());
+
     }
+
   }
 
   filterMealsForCurrentDay(selectedDate: Date) {
@@ -83,6 +89,7 @@ export class MealEntryComponent {
     this.allUserSavedMeals.splice(index, 1);
     localStorage.setItem('AllUserSavedMeals', JSON.stringify(this.allUserSavedMeals));
     this.filterMealsForCurrentDay(moment().toDate()); // Para actualizar la lista de comidas mostrada después de eliminar
+    this.itemDeleted.emit(true)
     this.openSnackBar('Removed successfully.','Close',{
       duration:5000,
     })

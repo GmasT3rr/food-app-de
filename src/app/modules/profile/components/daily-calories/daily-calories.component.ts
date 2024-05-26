@@ -13,8 +13,8 @@ import moment from 'moment';
 })
 export class DailyCaloriesComponent {
   day = { name: '', date: '', calories: 0 };
-  currentDate:string=''
-  currentDayName:string = ''
+  currentDate: string = '';
+  currentDayName: string = '';
   nutrientData = {
     protein: 0,
     maxProtein: 175,
@@ -28,15 +28,7 @@ export class DailyCaloriesComponent {
   currentDayMeals: SavedMeal[] = [];
 
   constructor() {
-    const ITEM = localStorage.getItem('AllUserSavedMeals');
-    if (ITEM) {
-      const allUserSavedMeals = JSON.parse(ITEM) as SavedMeal[];
-      this.allUserSavedMeals = allUserSavedMeals.map((meal: SavedMeal) => ({
-        ...meal,
-        day: new Date(meal.day),
-      }));
-      this.filterMealsForCurrentDay(moment().toDate());
-    }
+    this.getStorage()
   }
 
   filterMealsForCurrentDay(selectedDate: Date) {
@@ -77,5 +69,22 @@ export class DailyCaloriesComponent {
 
   onDateSelected(selectedDate: Date) {
     this.filterMealsForCurrentDay(selectedDate);
+  }
+  itemDeleted(bool: boolean) {
+    this.getStorage();
+  }
+
+  getStorage() {
+    const ITEM = localStorage.getItem('AllUserSavedMeals');
+    if (ITEM) {
+      const allUserSavedMeals = JSON.parse(ITEM) as SavedMeal[];
+      this.allUserSavedMeals = allUserSavedMeals.map((meal: SavedMeal) => ({
+        ...meal,
+        day: new Date(meal.day),
+      }));
+      this.filterMealsForCurrentDay(moment().toDate());
+    } else {
+      this.filterMealsForCurrentDay(moment().toDate());
+    }
   }
 }
