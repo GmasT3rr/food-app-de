@@ -12,10 +12,15 @@ export const routes: Routes = [
       import('./modules/food/food.module').then((m) => m.FoodModule),
   },
   {
-    path: 'api/foods/profile',
+    path: 'api/foods/plan',
     loadChildren: () =>
-      import('./modules/profile/profile.module').then((m) => m.ProfileModule),
+      import('./modules/plan/plan.module').then((m) => m.PlanModule),
   },
+   {
+     path: 'api/foods/plan/settings',
+     loadChildren: () =>
+       import('./modules/settings/settings.module').then((m) => m.SettingsModule),
+   },
   {
     path:'**', pathMatch:'full', redirectTo:'api/foods/search'
   }

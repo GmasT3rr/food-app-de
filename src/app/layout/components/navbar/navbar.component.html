@@ -21,7 +21,8 @@
 
     <div class="links">
       <a href="api/foods/search">Search <mat-icon>search</mat-icon></a>
-      <a href="api/foods/profile">Profile <mat-icon>person</mat-icon></a>
+      <a href="api/foods/plan">Plan <mat-icon>assignment</mat-icon></a>
+      <a href="api/foods/plan/settings">Settings <mat-icon>settings</mat-icon></a>
     </div>
     <div class="mobile">
       <!-- Botón de menú para resoluciones pequeñas -->
@@ -29,13 +30,16 @@
         <mat-icon>menu</mat-icon>
       </button>
       <!-- Menú desplegable -->
-      <mat-menu  #beforeMenu="matMenu" xPosition="before" #menu="matMenu">
+      <mat-menu #beforeMenu="matMenu" xPosition="before" #menu="matMenu">
         <!-- Elementos del menú -->
         <a mat-menu-item href="api/foods/search">
           <mat-icon>search</mat-icon> Search
         </a>
-        <a mat-menu-item href="api/foods/profile">
-          <mat-icon>person</mat-icon> Profile
+        <a mat-menu-item href="api/foods/plan">
+          <mat-icon>assignment</mat-icon> Plan
+        </a>
+        <a mat-menu-item href="api/foods/plan/settings">
+          <mat-icon>settings</mat-icon> Settings
         </a>
       </mat-menu>
     </div>

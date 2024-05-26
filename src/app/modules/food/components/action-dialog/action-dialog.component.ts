@@ -7,12 +7,12 @@ import { MatIcon } from '@angular/material/icon';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { Food } from '../../../../interfaces/food.interface';
 import { Serving } from '../../../../interfaces/serving.interface';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {provideNativeDateAdapter} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import moment from 'moment';
-import { EntryPlaceService } from '../../../shared/services/entry-place.service';
+import { MealEntryService } from '../../../shared/services/meal-entry-place.service';
 
 @Component({
   selector: 'app-action-dialog',
@@ -25,7 +25,9 @@ import { EntryPlaceService } from '../../../shared/services/entry-place.service'
     MatIcon,
     MatSelect,
     MatOption,
-    MatFormFieldModule, MatInputModule, MatDatepickerModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
   ],
   templateUrl: './action-dialog.component.html',
   styleUrl: './action-dialog.component.scss',
@@ -47,21 +49,24 @@ export class ActionDialogComponent implements OnInit {
     carbs: 0,
     fat: 0,
   };
+  //TODO
+  //Interface for dialogref??
+  //Mat date esta bugueado y marca malla fecha, quiza depende del utc y esas cosas
   selectedDate: string;
 
   //TODO
   //Interface for dialogref??
   constructor(
-    private _entryService: EntryPlaceService,
+    private _entryService: MealEntryService,
     public dialogRef: DialogRef<any>,
     @Inject(DIALOG_DATA) public data: { food: Food; serving: Serving }
   ) {
-    this.servingSize = this.isGrams() ? "100" : "1";
+    this.servingSize = this.isGrams() ? '100' : '1';
     this.selectedDate = moment().format('YYYY-MM-DD');
     //
-    this.mealEntryPlace = this._entryService.getMealEntryPlace()
-
-    
+    this.mealEntryPlace = this._entryService.getMealEntryPlace();
+    const date = this._entryService.getSelectedDate();
+    this.selectedDate = moment(date).format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
@@ -85,7 +90,6 @@ export class ActionDialogComponent implements OnInit {
   isGrams(): boolean {
     return this.data.serving.measurement_description === 'g';
   }
-
 
   openSelector() {
     this.mySelector.open();
@@ -131,6 +135,5 @@ export class ActionDialogComponent implements OnInit {
       this.currentServing.carbs.toFixed(2)
     );
     this.currentServing.fat = parseFloat(this.currentServing.fat.toFixed(2));
-
   }
 }

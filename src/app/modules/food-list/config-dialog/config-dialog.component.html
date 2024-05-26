@@ -1,0 +1,19 @@
+<div class="dialog-container">
+  <h1 style="color: var(--primary-alt); font-size: 2.2rem">Hi there!</h1>
+  <h3 style="font-size: 1.3rem">It seems like it's your first time here...</h3>
+  <p>
+    Don't forget going to
+    <strong style="color: var(--primary-alt)">Settings</strong> to set your
+    preferences and configure your profile.
+  </p>
+
+  <div style="display: flex">
+    <button
+      style="margin-left: auto"
+      mat-button
+      (click)="go(); dialogRef.close()"
+    >
+      Take me there
+    </button>
+  </div>
+</div>

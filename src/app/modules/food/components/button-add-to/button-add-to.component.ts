@@ -4,7 +4,7 @@ import { ActionDialogComponent } from '../action-dialog/action-dialog.component'
 import { Food } from '../../../../interfaces/food.interface';
 import { Serving } from '../../../../interfaces/serving.interface';
 import { Meal, SavedMeal } from '../../../../interfaces/savedMeals.interface';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 import moment, { duration } from 'moment';
 
@@ -36,13 +36,14 @@ export class ButtonAddToComponent {
     }
   }
 
-  openSnackBar(message: string, action: string, config:MatSnackBarConfig) {
+  openSnackBar(message: string, action: string, config: MatSnackBarConfig) {
     this._snackBar.open(message, action, config);
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open<string>(ActionDialogComponent, {
       width: '100%',
+      height:'100vh',
       data: {
         food: this.food,
         serving: this.serving,
@@ -53,9 +54,9 @@ export class ButtonAddToComponent {
       if (result) {
         const meal = result as Meal;
         this.saveMeal(meal);
-        this.openSnackBar('Added successfully.','Close',{
-          duration:5000,
-        })
+        this.openSnackBar('Added successfully.', 'Close', {
+          duration: 5000,
+        });
       } else {
         console.log('closed without data');
       }
@@ -63,15 +64,24 @@ export class ButtonAddToComponent {
   }
 
   saveMeal(meal: Meal) {
+    let currentDate = moment().startOf('day'); // Obtenemos la fecha actual en la hora 0
+    const currentTime = moment(); // Obtenemos la hora y minutos actuales
+
+    currentDate.add(currentTime.hours(), 'hours');
+    currentDate.add(currentTime.minutes(), 'minutes');
+    currentDate.add(currentTime.seconds(), 'seconds');
+
     const savedMeal: SavedMeal = {
-      day: moment().startOf('day').toDate(),
+      day: currentDate.toDate(), // Convertimos a objeto Date
       meal: meal,
     };
 
     if (meal.selectedDate) {
-      savedMeal.day = moment(meal.selectedDate).startOf('day').toDate();
-    } else {
-      savedMeal.day = moment().startOf('day').toDate();
+      currentDate = moment(meal.selectedDate).startOf('day');
+      currentDate.add(currentTime.hours(), 'hours');
+      currentDate.add(currentTime.minutes(), 'minutes');
+      currentDate.add(currentTime.seconds(), 'seconds');
+      savedMeal.day = currentDate.toDate();
     }
 
     this.allUserSavedMeals.push(savedMeal);

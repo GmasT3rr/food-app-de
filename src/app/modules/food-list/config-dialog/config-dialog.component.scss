@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.dialog-container {
+  transition: all 300ms;
+  color: var(--text);
+  background: var(--default-lighten);
+  width: 33%;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0px 0px 2rem 1.5rem rgba(0, 0, 0, 0.5);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 1250px) {
+  .dialog-container {
+    width: 50%;
+  }
+}
+@media (max-width: 1024px) {
+  .dialog-container {
+    width: 66%;
+  }
+}
+@media (max-width: 550px) {
+  .dialog-container {
+    width: 75%;
+    .title-and-brand {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    .info-container {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      div {
+        margin: 0.5rem;
+      }
+    }
+  }
+}

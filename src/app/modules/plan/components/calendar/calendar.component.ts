@@ -28,6 +28,7 @@ export class CalendarComponent {
   @Output() dateSelected = new EventEmitter<Date>(); // Add this line
   daysOfWeek: { day: string; date: number }[] = [];
   selectedMonth: number = new Date().getMonth();
+  calorieGoal=2500
   months = [
     { name: 'January', value: 0 },
     { name: 'February', value: 1 },
@@ -49,12 +50,20 @@ export class CalendarComponent {
 
   constructor() {
     this.getStorage();
+    this.loadConfigFromLocalStorage()
   }
 
   ngOnInit(): void {
     this.generateDaysOfMonth();
   }
 
+  loadConfigFromLocalStorage(){
+    const item = localStorage.getItem('config')
+    if(item){
+      const config = JSON.parse(item)
+      this.calorieGoal = config.dailyIntake.toFixed(0)
+    }
+  }
   onChangeMonth(): void {
     // Crear una nueva fecha con el mes seleccionado
     const selectedDate = new Date();

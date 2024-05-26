@@ -1,0 +1,246 @@
+<div class="settings-container">
+  <!--  -->
+  <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+  </button> -->
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper style="border-radius: .75rem;">
+    <!-- ---------------- FIRST FORM ----------------  -->
+    <mat-step [stepControl]="healthProfileForm">
+      <form [formGroup]="healthProfileForm">
+        <ng-template matStepLabel>Fill out your info</ng-template>
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="birthday-picker">
+          <mat-label>Birthday</mat-label>
+          <input
+            formControlName="birthday"
+            matInput
+            [matDatepicker]="picker"
+            (selectionChange)="logForm(healthProfileForm)"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          @if (healthProfileForm.get('birthday')?.errors?.['required']) {
+          <mat-error>Birthday is <strong>required</strong></mat-error>
+          } @if (healthProfileForm.get('birthday')?.errors?.['invalidBirthday'])
+          {
+          <mat-error>You are not a <strong>time traveler</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="gender-select">
+          <mat-label>Gender</mat-label>
+          <mat-select
+            formControlName="gender"
+            (selectionChange)="logForm(healthProfileForm)"
+          >
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+          </mat-select>
+          @if (healthProfileForm.get('gender')?.errors?.['required']) {
+          <mat-error>Gender is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="input-height">
+          <mat-label>Height (cm)</mat-label>
+          <input matInput type="number" formControlName="height" />
+          @if (healthProfileForm.value.height) {
+          <button
+            class="clear"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="resetField(healthProfileForm, 'height')"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          } @if (healthProfileForm.get('height')?.errors?.['required']) {
+          <mat-error>Height is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="input-weight">
+          <mat-label>Weight (kg)</mat-label>
+          <input matInput type="number" formControlName="weight" />
+          @if (healthProfileForm.value.weight) {
+          <button
+            class="clear"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="resetField(healthProfileForm, 'weight')"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          } @if (healthProfileForm.get('weight')?.errors?.['required']) {
+          <mat-error>Weight is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- ---------------- SECOND FORM ----------------  -->
+    <mat-step [stepControl]="goalsProfileForm">
+      <form [formGroup]="goalsProfileForm">
+        <ng-template matStepLabel>Fill out your goal</ng-template>
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="goal-select">
+          <mat-label>Goal</mat-label>
+          <mat-select
+            formControlName="goal"
+            (selectionChange)="logForm(goalsProfileForm)"
+          >
+            <mat-option value="Lose weight">Lose weight</mat-option>
+            <mat-option value="Mantain weight">Mantain weight</mat-option>
+            <mat-option value="Gain weight">Gain weight</mat-option>
+          </mat-select>
+          @if (healthProfileForm.get('goal')?.errors?.['required']) {
+          <mat-error>Goal is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        @if (goalsProfileForm.value.goal && goalsProfileForm.value.goal !==
+        "Mantain weight") {
+        <mat-form-field class="goal-speed-select">
+          <mat-label>Goal speed</mat-label>
+          <mat-select
+            formControlName="goalSpeed"
+            (selectionChange)="logForm(goalsProfileForm)"
+          >
+            <mat-option value="Slow">Slow</mat-option>
+            <mat-option value="Normal">Normal</mat-option>
+            <mat-option value="Fast">Fast</mat-option>
+          </mat-select>
+          @if (healthProfileForm.get('goalSpeed')?.errors?.['required']) {
+          <mat-error>Goal speed is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        }
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="activity-level-select">
+          <mat-label>Activity level</mat-label>
+          <mat-select
+            formControlName="activityLevel"
+            (selectionChange)="logForm(goalsProfileForm)"
+          >
+            <mat-option value="Sedentary">Sedentary</mat-option>
+            <mat-option value="Lightly Active">Lightly Active</mat-option>
+            <mat-option value="Moderately Active">Moderately Active</mat-option>
+            <mat-option value="Very Active">Very Active</mat-option>
+            <mat-option value="Extremely Active">Extremely Active</mat-option>
+          </mat-select>
+          @if (healthProfileForm.get('goalSpeed')?.errors?.['required']) {
+          <mat-error>Activity level is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <!--  -->
+        <!-- ----FORMFIELD---- -->
+        <mat-form-field class="diet-select">
+          <mat-label>Diet Type</mat-label>
+          <mat-select
+            formControlName="dietType"
+            (selectionChange)="logForm(goalsProfileForm)"
+          >
+            <mat-option value="Balanced">Balanced Diet</mat-option>
+            <mat-option value="Ketogenic">Ketogenic Diet</mat-option>
+            <mat-option value="Paleo">Paleo Diet</mat-option>
+            <mat-option value="High Protein">High Protein Diet</mat-option>
+            <mat-option value="High Carbs">High Carbs Diet</mat-option>
+          </mat-select>
+          @if (healthProfileForm.get('dietType')?.errors?.['required']) {
+          <mat-error>Diet Type is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <!-- ----END OF FORMFIELD---- -->
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext (click)="calculateTMB()">
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Results</ng-template>
+      <div class="kcal-info">
+        <div>
+          <h2>Your TMB is: {{ userCalculatedTMB | number : "1.0-0"}} kcal</h2>
+        </div>
+        <div>
+          <h2>Your daily intake should be: {{ userCaloriesToConsume | number : "1.0-0"}} kcal</h2>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="calculateTMB()">Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Adjust your macros (optional)</ng-template>
+      <div class="slider-container">
+        <div class="slider-padded">
+          <div class="macro-info">
+            <span> {{ proteinToConsume.amount | number : "1.0-0" }}g </span>
+            <mat-slider>
+              <input
+                matSliderThumb
+                [value]="proteinToConsume.percentage"
+                (input)="onSliderChange($event, 'P')"
+              />
+            </mat-slider>
+          </div>
+        </div>
+        <div class="slider-padded">
+          <div class="macro-info">
+            <span> {{ carbsToConsume.amount | number : "1.0-0" }}g </span>
+            <mat-slider>
+              <input
+                matSliderThumb
+                [value]="carbsToConsume.percentage"
+                (input)="onSliderChange($event, 'C')"
+              />
+            </mat-slider>
+          </div>
+        </div>
+        <div class="slider-padded">
+          <div class="macro-info">
+            <span> {{ fatToConsume.amount | number : "1.0-0" }}g </span>
+            <mat-slider>
+              <input
+                matSliderThumb
+                [value]="fatToConsume.percentage"
+                (input)="onSliderChange($event, 'F')"
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%; display: flex;">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button style="margin-left: auto;" (click)="saveSettings()"
+        [disabled]="userCaloriesToConsume == 0"
+        >Save</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

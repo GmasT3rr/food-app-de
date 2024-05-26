@@ -149,13 +149,13 @@
       background-color: var(--default-alt);
       transition: all 300ms;
     }
-    .cancel {
-      &:hover {
-        background-color: var(--text-secondary);
-        color: var(--default-lighten);
-        opacity: 1;
-      }
-    }
+    // .cancel {
+    //   &:hover {
+    //     background-color: var(--text-secondary);
+    //     color: var(--default-lighten);
+    //     opacity: 1;
+    //   }
+    // }
   }
 }
 /* Chrome, Safari, Edge, Opera */

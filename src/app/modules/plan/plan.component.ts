@@ -5,12 +5,15 @@ import { DailyCaloriesComponent } from './components/daily-calories/daily-calori
 import { MealEntryComponent } from './components/meal-entry/meal-entry.component';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-plan',
   standalone: true,
-  imports: [CommonModule,CalendarComponent,DailyCaloriesComponent,MealEntryComponent],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+  imports: [
+    CommonModule,
+    CalendarComponent,
+    DailyCaloriesComponent,
+    MealEntryComponent,
+  ],
+  templateUrl: './plan.component.html',
+  styleUrl: './plan.component.scss',
 })
-export class ProfileComponent {
-
-}
+export class PlanComponent {}

@@ -23,12 +23,25 @@ export class DailyCaloriesComponent {
     fat: 0,
     maxFat: 98,
   };
-
+  calorieGoal=2500
   allUserSavedMeals: SavedMeal[] = [];
   currentDayMeals: SavedMeal[] = [];
+  selectedDate: any;
 
   constructor() {
-    this.getStorage()
+    this.getStorage();
+    this.loadConfigFromLocalStorage()
+  }
+
+  loadConfigFromLocalStorage(){
+    const item = localStorage.getItem('config')
+    if(item){
+      const config = JSON.parse(item)
+      this.nutrientData.maxCarbs = config.macrosAmount.carbs.toFixed(0)
+      this.nutrientData.maxFat = config.macrosAmount.fat.toFixed(0)
+      this.nutrientData.maxProtein = config.macrosAmount.protein.toFixed(0)
+      this.calorieGoal = config.dailyIntake.toFixed(0)
+    }
   }
 
   filterMealsForCurrentDay(selectedDate: Date) {
@@ -68,6 +81,7 @@ export class DailyCaloriesComponent {
   }
 
   onDateSelected(selectedDate: Date) {
+    this.selectedDate = selectedDate;
     this.filterMealsForCurrentDay(selectedDate);
   }
   itemDeleted(bool: boolean) {
@@ -82,7 +96,9 @@ export class DailyCaloriesComponent {
         ...meal,
         day: new Date(meal.day),
       }));
-      this.filterMealsForCurrentDay(moment().toDate());
+      if (this.selectedDate) {
+        this.filterMealsForCurrentDay(this.selectedDate);
+      } else this.filterMealsForCurrentDay(moment().toDate());
     } else {
       this.filterMealsForCurrentDay(moment().toDate());
     }

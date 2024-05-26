@@ -5,7 +5,7 @@
   <div class="circular-progress-bar">
     <app-circular-progress-bar
       [caloriesConsumed]="day.calories"
-      [calorieGoal]="2500"
+      [calorieGoal]="calorieGoal"
       [isForDailyCalories]="true"
     ></app-circular-progress-bar>
   </div>
@@ -17,7 +17,7 @@
           nutrientData.maxProtein
         }}"
       >
-        Protein <span>{{nutrientData.protein}} / {{nutrientData.maxProtein}}</span>
+        Protein <span>{{nutrientData.protein}} / {{nutrientData.maxProtein }}</span>
       </li>
       <li
         class="fill"
