@@ -1,0 +1,18 @@
+
+    <div class="search-bar-container">
+      <div class="wrapper-padded">
+        <button mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+        <input
+          #searchInput
+          [(ngModel)]="value"
+          (keyup.enter)="search(searchInput.value)"
+          placeholder="Search any food"
+          type="text"
+        />
+        <button mat-icon-button (click)="clearValue()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>

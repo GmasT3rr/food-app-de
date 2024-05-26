@@ -1,0 +1,33 @@
+<div class="calendar">
+  <!-- <div class="controls">
+    <select >
+      <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+    </select>
+  </div> -->
+
+  <mat-form-field class="month-select">
+    <mat-label>Display Month:</mat-label>
+    <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onChangeMonth()">
+      @for (month of months; track month) {
+        <mat-option [value]="month.value">{{month.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <div class="calendar-header">
+    <ng-container *ngFor="let day of currentWeek; let i = index">
+      <div class="progress" (click)="selectDay(day)">
+        <div class="day">{{ day.name }}</div>
+        <app-circular-progress-bar
+          [day]="day.date"
+          [caloriesConsumed]="day.calories"
+          [calorieGoal]="2500"
+        ></app-circular-progress-bar>
+      </div>
+    </ng-container>
+  </div>
+  <div class="week-nav">
+    <button (click)="navigateWeek(-1)"> <mat-icon>arrow_left</mat-icon></button>
+    <button (click)="navigateWeek(1)"><mat-icon>arrow_right</mat-icon></button>
+  </div>
+</div>

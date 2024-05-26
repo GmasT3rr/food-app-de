@@ -1,0 +1,58 @@
+svg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: auto;
+  transition: all 300ms;
+  cursor: pointer;
+  .circle {
+    stroke: var(--default-lighten);
+    stroke-width: 7.5;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .circle-fill {
+    // stroke: var(--secondary);
+    stroke-width: 8;
+    fill: none;
+    transition: all 300ms;
+    stroke-linecap: round;
+  }
+  .day-number {
+    font-size: 1.8rem;
+    fill: var(--text);
+    font-weight: bold;
+    text-anchor: middle;
+  }
+}
+svg.isForDailyCalories {
+  width: 80%;
+  height: 80%;
+  .circle-fill {
+    stroke: var(--primary);
+  }
+}
+.good {
+  stroke: var(--secondary);
+}
+
+.almost {
+  stroke: var(--fats);
+}
+
+.bad {
+  stroke: var(--default-alt);
+}
+
+@media (max-width: 768px) {
+  svg {
+    margin-top: 0.5rem;
+
+    width: 85% !important;
+    height: 85% !important;
+  }
+  svg.isForDailyCalories {
+    width: 90% !important;
+    height: 90% !important;
+  }
+}

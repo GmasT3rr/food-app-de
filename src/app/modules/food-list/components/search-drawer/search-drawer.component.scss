@@ -1,0 +1,26 @@
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  .wrapper-padded {
+    display: flex;
+    align-items: center;
+    border-radius: 0.75rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--default-lighten);
+    transition: all 300ms;
+    button {
+      color: var(--text);
+    }
+    input {
+      font-size: 1.1rem;
+      outline: none;
+      border: none;
+      background: inherit;
+      width: 100%;
+      color: var(--text);
+    }
+  }
+}
+

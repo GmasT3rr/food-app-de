@@ -1,0 +1,94 @@
+<div class="dialog-container">
+  <div class="title-and-brand">
+    <h1>{{ data.food.food_name }}</h1>
+    @if (data.food?.food_type === "Brand") {
+    <span>{{ data.food?.brand_name }}</span>
+    } @else{
+    <span>
+      {{ data.food?.food_type }}
+    </span>
+    }
+  </div>
+  <div class="info-container">
+    <div class="kcals">
+      <span>{{ currentServing.calories }}</span>
+      <span>calories</span>
+    </div>
+    <div class="protein">
+      <span>{{ currentServing.protein }}g</span> <span>protein</span>
+    </div>
+    <div class="carbs">
+      <span>{{ currentServing.carbs }}g</span> <span>carbs</span>
+    </div>
+    <div class="fat">
+      <span>{{ currentServing.fat }}g</span> <span>fat</span>
+    </div>
+  </div>
+  <div class="select-amount-container">
+    <div class="type">
+      {{
+        isGrams()
+          ? "g"
+          : data.serving.measurement_description +
+            " " +
+            this.data.serving.serving_description
+      }}
+    </div>
+    <div class="serving">
+      <input
+        (input)="calculateNutritionalValues()"
+        [(ngModel)]="servingSize"
+        type="number"
+        placeholder="100"
+      />
+    </div>
+  </div>
+  <!-- <div class="date-selector">
+    <label for="selectedDate">Select Date:</label>
+    <input type="date" id="selectedDate" >
+  </div> -->
+  <mat-form-field class="date-picker">
+    <mat-label>Choose a date</mat-label>
+    <input [(ngModel)]="selectedDate" matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="add-to-container">
+    <div class="button-container">
+      <button
+        (click)="
+          dialogRef.close({
+            food: data.food,
+            currentServing,
+            mealEntryPlace,
+            servingSize,
+            serving: data.serving,
+            selectedDate
+          })
+        "
+        class="add"
+        [ngClass]="{
+          disabled: !mealEntryPlace || !servingSize,
+          
+        }"
+      >
+        Add to {{ mealEntryPlace }}
+      </button>
+      <button mat-icon-button (click)="openSelector()" class="select">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+    <mat-select class="dropdown-menu" [(value)]="mealEntryPlace">
+      <mat-option value="Breakfast">Breakfast</mat-option>
+      <mat-option value="Morning Snack">Morning Snack</mat-option>
+      <mat-option value="Lunch">Lunch</mat-option>
+      <mat-option value="Afternoon Snack">Afternoon Snack</mat-option>
+      <mat-option value="Dinner">Dinner</mat-option>
+    </mat-select>
+  </div>
+  <div class="close-button-container">
+    <button class="cancel" (click)="dialogRef.close()">Cancel</button>
+    <!-- <button class="accept" (click)="dialogRef.close('Data  sent')">OK</button> -->
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="navbar">
+  <mat-toolbar color="primary">
+    <div class="logo-container">
+      <div class="logo">
+        <a href="/api/foods/search">
+          <img src="favicon.ico" alt="logo" />
+          <Strong>FoodApp</Strong>
+        </a>
+      </div>
+      <a href="https://www.fatsecret.com">
+        <img
+          src="https://platform.fatsecret.com/api/static/images/powered_by_fatsecret.png"
+          srcset="
+            https://platform.fatsecret.com/api/static/images/powered_by_fatsecret_2x.png 2x,
+            https://platform.fatsecret.com/api/static/images/powered_by_fatsecret_3x.png 3x
+          "
+          border="0"
+        />
+      </a>
+    </div>
+
+    <div class="links">
+      <a href="/api/foods/search">Search <mat-icon>search</mat-icon></a>
+      <a href="/api/foods/profile">Profile <mat-icon>person</mat-icon></a>
+    </div>
+    <div class="mobile">
+      <!-- Botón de menú para resoluciones pequeñas -->
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- Menú desplegable -->
+      <mat-menu  #beforeMenu="matMenu" xPosition="before" #menu="matMenu">
+        <!-- Elementos del menú -->
+        <a mat-menu-item href="/api/foods/search">
+          <mat-icon>search</mat-icon> Search
+        </a>
+        <a mat-menu-item href="/api/foods/profile">
+          <mat-icon>person</mat-icon> Profile
+        </a>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</mat-toolbar>

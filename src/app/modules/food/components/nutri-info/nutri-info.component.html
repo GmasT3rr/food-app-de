@@ -1,0 +1,71 @@
+<div class="nutritional-info">
+  <h1>Nutritional info:</h1>
+  <div class="nutrition-container">
+    <ul class="carbs">
+      <li>
+        Carbohidrates<span>{{ serving?.carbohydrate | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Fiber<span>{{ serving?.fiber | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Total Sugar<span>{{ serving?.sugar | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Added Sugar<span>{{ serving?.added_sugar | displayIfAvailable: 'g' }}</span>
+      </li>
+    </ul>
+
+    <ul class="s-p-c">
+      <li>
+        Sodium <span>{{ serving?.sodium | displayIfAvailable: 'mg' }}</span>
+      </li>
+      <li>
+        Potasium <span>{{ serving?.potassium | displayIfAvailable: 'mg' }}</span>
+      </li>
+      <li>
+        Calcium <span>{{ serving?.calcium | displayIfAvailable: 'mg' }}</span>
+      </li>
+    </ul>
+    <ul class="fat">
+      <li>
+        Total Fat <span>{{ serving?.fat | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Saturated Fat <span>{{ serving?.saturated_fat | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Polyunsaturated Fat <span>{{ serving?.polyunsaturated_fat | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Monounsaturated Fat <span>{{ serving?.monounsaturated_fat | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Trans Fat <span>{{ serving?.trans_fat | displayIfAvailable: 'g' }}</span>
+      </li>
+      <li>
+        Cholesterol <span>{{ serving?.cholesterol | displayIfAvailable: 'mg' }}</span>
+      </li>
+    </ul>
+
+    <ul class="vitamins">
+      <li>
+        Vitamin A <span>{{ serving?.vitamin_a | displayIfAvailable: 'μg' }}</span>
+      </li>
+      <li>
+        Vitamin C <span>{{ serving?.vitamin_c | displayIfAvailable: 'mg' }}</span>
+      </li>
+      <li>
+        Vitamin D <span>{{ serving?.vitamin_d | displayIfAvailable: 'μg' }}</span>
+      </li>
+      <li>
+        Iron <span>{{ serving?.iron | displayIfAvailable: 'mg' }}</span>
+      </li>
+    </ul>
+    <ul class="protein">
+      <li>
+        Protein <span>{{ serving?.protein | displayIfAvailable: 'g' }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

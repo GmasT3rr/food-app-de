@@ -1,0 +1,61 @@
+  .container {
+    margin: auto;
+    padding: 5rem 0 5rem 0;
+    transition: all 300ms;
+    z-index: 1;
+  }
+
+
+@media (min-width: 1440px) {
+  .container {
+    width: 42.5%;
+  }
+}
+@media (max-width: 1439px) {
+  .container {
+    width: 50%;
+  }
+  app-navbar::ng-deep {
+    .navbar {
+      mat-toolbar {
+        width: 66.6666% !important;
+      }
+    }
+  }
+}
+@media (max-width: 1250px) {
+  .container {
+    width: 66.6666%;
+  }
+  app-navbar::ng-deep {
+    .navbar {
+      mat-toolbar {
+        width: 75% !important;
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    width: 75%;
+  }
+  app-navbar::ng-deep {
+    .navbar {
+      mat-toolbar {
+        width: 83.3333% !important;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 83.3333%;
+  }
+  app-navbar::ng-deep {
+    .navbar {
+      mat-toolbar {
+        width: 100% !important;
+      }
+    }
+  }
+}

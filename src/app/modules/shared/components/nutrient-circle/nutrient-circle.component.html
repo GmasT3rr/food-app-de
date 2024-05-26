@@ -1,0 +1,19 @@
+<!-- src/app/nutrient-circle/nutrient-circle.component.html -->
+<div class="circle-container">
+  <svg class="circle-svg" viewBox="0 0 36 36">
+    <circle class="background-circle" cx="18" cy="18" r="15.91549431" />
+    <circle
+      *ngFor="let segment of segments"
+      [attr.stroke]="segment.color"
+      [attr.stroke-dasharray]="segment.dasharray"
+      [attr.stroke-dashoffset]="segment.dashoffset"
+      class="progress-circle"
+      cx="18"
+      cy="18"
+      r="15.91549431"
+    />
+  </svg>
+  <div class="calories" >
+    {{ calories }} <br /><span>kcal</span>
+  </div>
+</div>

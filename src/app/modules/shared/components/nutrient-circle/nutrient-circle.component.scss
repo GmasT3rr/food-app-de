@@ -1,0 +1,42 @@
+/* src/app/nutrient-circle/nutrient-circle.component.css */
+.circle-container {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms;
+  .circle-svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .background-circle {
+      transition: all 300ms;
+      fill: none;
+      stroke: var(--default);
+      stroke-width: 2;
+    }
+    .progress-circle {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+  }
+
+  .calories {
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+    transition: all 300ms;
+    font-size: 1.2rem;
+    span {
+      transition: all 300ms;
+      font-size: .75rem;
+      font-weight: normal;
+    }
+  }
+}

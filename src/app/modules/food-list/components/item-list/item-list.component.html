@@ -1,0 +1,24 @@
+<div class="list-container">
+  @if (searchTerm) {
+  <h1>Results for your search: "{{ searchTerm }}"</h1>
+  @if (!loadingPaginator) {
+  <div class="paginator">
+    <mat-paginator
+      [length]="totalResults"
+      [pageSize]="maxResults"
+      [pageIndex]="pageNumber"
+      [pageSizeOptions]="[5, 10, 20, 50]"
+      (page)="pageChanged($event)"
+    ></mat-paginator>
+  </div>
+  }@else {
+  <div class="paginator loading-container"></div>
+
+  } @if (!loadingFoodList) { @for (food of foodList?.food; track $index) {
+
+  <app-item [food]="food"></app-item>
+  } }@else { @for (food of [1,2,3,4,5]; track $index) {
+
+  <div class="item loading-container"></div>
+  } } }
+</div>

@@ -1,0 +1,24 @@
+@import '../../../../../styles.scss';
+.list-container {
+  color: var(--text);
+  h1 {
+    margin: 3rem 0 1.5rem 0;
+    font-size: 1.6rem;
+  }
+  mat-paginator {
+    background-color: var(--default-lighten);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .paginator.loading-container {
+    height: 4rem;
+    width: 100%;
+  }
+  .item.loading-container {
+    height: 7rem;
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+

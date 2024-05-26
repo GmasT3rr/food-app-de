@@ -1,0 +1,200 @@
+.food-description {
+  h1 {
+    margin: 2rem 0 1rem 0;
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .brand-and-serving {
+    color: var(--text);
+    font-size: 1.1rem;
+    padding-left: 0.125rem;
+  }
+}
+
+.item-container {
+  width: 100%;
+  margin: 2rem 0;
+  position: relative;
+  border-radius: 0.75rem;
+  transition: all 300ms;
+  color: var(--text);
+  background-color: var(--default-lighten);
+  transition: all 300ms;
+  .info-container {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 300ms;
+    padding: 1rem;
+    .title {
+      margin: 0 0 1.5rem 0;
+      font-size: 1.4rem;
+      padding-bottom: 2rem;
+      color: var(--text);
+      width: 100%;
+      padding: 0.25rem 0.5rem;
+      transition: all 300ms;
+    }
+
+    .macros-info {
+      display: flex;
+      flex: row;
+      transition: all 300ms;
+      .info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1.5rem;
+        transition: all 300ms;
+        text-align: center;
+        .percentage {
+          font-size: 1rem;
+          transition: all 300ms;
+        }
+        .amount {
+          transition: all 300ms;
+          font-size: 1.8rem;
+        }
+        .type {
+          font-size: 0.9rem;
+          padding-top: 0.5rem;
+          transition: all 300ms;
+          color: var(--text-secondary);
+        }
+        .Carbs {
+          color: var(--carbs);
+        }
+        .Fats {
+          color: var(--fats);
+        }
+        .Proteins {
+          color: var(--proteins);
+        }
+      }
+    }
+  }
+  .macros-wheel {
+    height: 100%;
+    display: flex;
+    transition: all 300ms;
+    align-items: center;
+    app-nutrient-circle::ng-deep {
+      .calories {
+        font-weight: normal;
+        transition: all 300ms;
+        font-size: 2.2rem;
+        span {
+          transition: all 300ms;
+          font-size: 1rem;
+        }
+      }
+      .circle-container {
+        position: relative;
+        width: 9rem;
+        height: 9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .circle-svg {
+          .background-circle {
+            stroke: var(--default-lighten);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .macros-info {
+    .info {
+      padding: 0 1rem !important;
+      .percentage {
+        font-size: 0.85rem !important;
+      }
+      .amount {
+        font-size: 1.6rem !important;
+      }
+      .type {
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .macros-wheel {
+    app-nutrient-circle::ng-deep {
+      .calories {
+        font-weight: normal;
+        font-size: 1.8rem !important;
+        span {
+          font-size: 0.9rem !important;
+        }
+      }
+      .circle-container {
+        width: 8rem !important;
+        height: 8rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .macros-wheel {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 1rem;
+  }
+  .title {
+    font-size: 1.2rem !important;
+  }
+  .macros-info {
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: space-around;
+    .info {
+      padding: 0 !important;
+      .percentage {
+        font-size: 0.75rem !important;
+      }
+      .amount {
+        font-size: 1.75rem !important;
+      }
+      .type {
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .macros-wheel {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 1rem;
+  }
+  .title {
+    font-size: 1.2rem !important;
+  }
+  .macros-info {
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: space-around;
+    .info {
+      padding: 0 !important;
+      .percentage {
+        font-size: 0.75rem !important;
+      }
+      .amount {
+        font-size: 1.3rem !important;
+      }
+      .type {
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+}

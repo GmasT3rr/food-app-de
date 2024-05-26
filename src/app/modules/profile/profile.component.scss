@@ -1,0 +1,9 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  color: var(--text);
+  h1 {
+    line-height: 0.9;
+  }
+}

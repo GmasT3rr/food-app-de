@@ -1,14 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [CommonModule, LayoutComponent],
+  template: `<app-layout></app-layout>`,
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'food-app-fe';
+export class AppComponent implements OnInit {
+  private _authService = inject(AuthService);
+
+  ngOnInit(): void {
+    // this._authService.clearToken();
+    this.startTokenCheck();
+  }
+
+  startTokenCheck() {
+    this._authService.getToken();
+    setInterval(() => {
+      if (this._authService.isTokenExpired()) {
+        console.log('Token expired, fetching new token...');
+        this._authService.getToken();
+      }
+    }, 5000);
+  }
 }

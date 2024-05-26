@@ -1,0 +1,16 @@
+@if (!loading) {
+<app-food-info
+  [food]="food"
+  [serving]="serving"
+  [nutrientsPercentage]="nutrientsPercentage"
+></app-food-info>
+
+<app-nutri-info [serving]="serving"></app-nutri-info>
+}@else {
+<div class="food-description loading-container"></div>
+<div class="brand loading-container"></div>
+<div class="item-container loading-container"></div>
+<div class="button loading-container"></div>
+<div class="nutri-info-title loading-container"></div>
+<div class="nutri-info-container loading-container"></div>
+}

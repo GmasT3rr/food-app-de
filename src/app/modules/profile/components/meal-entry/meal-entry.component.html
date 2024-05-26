@@ -1,0 +1,42 @@
+<div class="meal-entry-container">
+  <div class="meals-container">
+    @for (entry of mealEntries; track $index) {
+    <div class="meal-entry">
+      <h1>{{ entry.name }}</h1>
+      <div class="macros-info">
+        {{ totalNutrients[entry.name]?.kcal | number:'1.0-0' || 0 }} Kcal |
+        {{ totalNutrients[entry.name]?.protein || 0 }} P |
+        {{ totalNutrients[entry.name]?.carbs || 0 }} C |
+        {{ totalNutrients[entry.name]?.fat || 0 }} F
+      </div>
+
+      @for (meal of currentDayMeals; track $index) { @if
+      (meal.meal.mealEntryPlace === entry.name) {
+      <div class="meal">
+        <div class="name">
+          {{ meal.meal.food.food_name }}
+        </div>
+        <div class="info">
+          <span class="serving"
+            >{{ meal.meal.servingSize }}
+            @if (meal.meal.serving.measurement_description === 'g') { g } @else
+            { serving }
+          </span>
+          <span class="kcal">{{ meal.meal.currentServing.calories | number:'1.0-0' }} kcal</span>
+        </div>
+        <div class="action">
+          <button (click)="deleteMeal($index)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      } }
+
+      <div class="actions-container">
+        <!-- <button ><mat-icon>add</mat-icon></button> -->
+        <button style="width: 100%;" (click)="setMealEntryPlace(entry.name )"  [routerLink]="['/search']" routerLinkActive="router-link-active" ><mat-icon>search</mat-icon></button>
+      </div>
+    </div>
+    }
+  </div>
+</div>

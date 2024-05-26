@@ -1,0 +1,85 @@
+.selected-day {
+  width: 100%;
+  margin-top: 1.5rem;
+  h1 {
+    margin: 0;
+    font-size: 1.65rem;
+  }
+}
+.daily-calories-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1.5rem 0;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: -1rem;
+    left: 0;
+    background-color: var(--default-alt);
+    height: 1px;
+    width: 100%;
+    opacity: 0.5;
+  }
+  .macros {
+    width: 50%;
+    height: 100%;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      padding-bottom: 0.5rem;
+      li {
+        font-size: 1.75rem;
+        width: 100%;
+        padding: 1rem 0;
+        margin-bottom: 1.5rem;
+        display: flex;
+        position: relative;
+
+        &::before {
+          transition: all 300ms;
+
+          z-index: 2;
+          position: absolute;
+          content: "";
+          width: calc((var(--nutrient-width) / var(--nutrient-max)) * 100%);
+          max-width: 100%;
+          height: 1rem;
+          background-color: var(--primary);
+          left: 0;
+          bottom: -0.75rem;
+          border-radius: 1rem;
+        }
+        &::after {
+          transition: all 300ms;
+
+          z-index: 1;
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 1rem;
+          background-color: var(--default-lighten);
+          left: 0;
+          bottom: -0.75rem;
+          border-radius: 1rem;
+        }
+        span {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .daily-calories-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    .macros {
+      width: 100%;
+    }
+  }
+}

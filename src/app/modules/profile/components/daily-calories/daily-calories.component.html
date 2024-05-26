@@ -1,0 +1,40 @@
+<div class="selected-day">
+  <h1>{{ currentDayName }}, {{ currentDate}}</h1>
+</div>
+<div class="daily-calories-container">
+  <div class="circular-progress-bar">
+    <app-circular-progress-bar
+      [caloriesConsumed]="day.calories"
+      [calorieGoal]="2500"
+      [isForDailyCalories]="true"
+    ></app-circular-progress-bar>
+  </div>
+  <div class="macros">
+    <ul>
+      <li
+        class="fill"
+        style="--nutrient-width: {{ nutrientData.protein }};--nutrient-max: {{
+          nutrientData.maxProtein
+        }}"
+      >
+        Protein <span>{{nutrientData.protein}} / {{nutrientData.maxProtein}}</span>
+      </li>
+      <li
+        class="fill"
+        style="--nutrient-width: {{ nutrientData.carbs }};--nutrient-max: {{
+          nutrientData.maxCarbs
+        }}"
+      >
+        Carbs <span>{{nutrientData.carbs}} / {{nutrientData.maxCarbs}}</span>
+      </li>
+      <li
+        class="fill"
+        style="--nutrient-width: {{ nutrientData.fat }}; --nutrient-max: {{
+          nutrientData.maxFat
+        }}"
+      >
+        Fat <span>{{nutrientData.fat}} / {{nutrientData.maxFat}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

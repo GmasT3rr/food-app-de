@@ -1,0 +1,94 @@
+.meal-entry-container {
+  margin-top: 2rem;
+  position: relative;
+  .meals-container {
+    margin: 1rem 0;
+    .meal-entry {
+      margin: 1rem 0;
+      padding: 0.75rem 0;
+      h1 {
+        margin: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1.9rem;
+        font-weight: 500;
+      }
+      .macros-info {
+        font-size: 1rem;
+        color: var(--default-alt);
+      }
+      .meal {
+        margin: 1rem 0 2rem 0;
+        padding: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        // border: 1px solid var(--default-lighten);
+        // border-radius: .75rem;
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "";
+          left: 0;
+          bottom: -0.25rem;
+          background-color: var(--default-lighten);
+          width: 100%;
+          height: 1px;
+        }
+        .name {
+          font-size: 1.15rem;
+        }
+        .info {
+          display: flex;
+          flex-direction: column;
+          margin-left: auto;
+          align-items: flex-end;
+          justify-content: center;
+          padding: 0 1rem 0 1.5rem;
+          .serving {
+            font-size: 1rem;
+          }
+          .kcal {
+            padding-top: 0.25rem;
+            font-size: 0.9rem;
+            color: var(--default-alt);
+          }
+        }
+        .action {
+          display: flex;
+          button {
+            border: 0;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: rgba(189, 9, 9, 0.7);
+            cursor: pointer;
+            transition: all 300ms;
+            &:hover {
+              background-color: rgb(161, 7, 7);
+            }
+            mat-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--text);
+            }
+          }
+        }
+      }
+      .actions-container {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        button {
+          cursor: pointer;
+          padding: 0.65rem 0;
+          width: 49.75%;
+          border-radius: 0.75rem;
+          border: none;
+          background-color: var(--default-lighten);
+          color: var(--text);
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,21 @@
+footer {
+  width: 100%;
+  background-color: var(--default-lighten);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .contact {
+    padding: 0.5rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--text);
+    transition: all 300ms;
+    fa-icon {
+      margin-right: 0.35rem;
+    }
+    &:hover{
+        color: var(--proteins);
+    }
+  }
+}

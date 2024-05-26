@@ -1,0 +1,38 @@
+<div class="item-container" (click)="goToFood()">
+  <div class="wrapper-padded">
+    <div class="info-container">
+      <h2>{{ food.food_name }}</h2>
+      <div class="brand-and-serving">
+        @if (food.food_type === "Brand") {
+        {{ food.brand_name }}, {{ food.serving_size }}
+        } @else{
+        {{ food.food_type }}, {{ food.serving_size }}
+        }
+      </div>
+      <div class="macros-info">
+        <ul>
+          <li class="kcals">Calories: {{ food.kcals }}</li>
+          <li>
+            <mat-icon class="Carbs">info</mat-icon>Carbs: {{ food.carbs }}
+          </li>
+          <li><mat-icon class="Fats">info</mat-icon>Fat: {{ food.fat }}</li>
+          <li>
+            <mat-icon class="Protein">info</mat-icon>Protein: {{ food.protein }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="macros-wheel">
+      <app-nutrient-circle
+        [calories]="food.kcals"
+        [nutrients]="{
+          protein: food.protein,
+          carbs: food.carbs,
+          fats: food.fat
+        }"
+      ></app-nutrient-circle>
+    </div>
+  </div>
+</div>
+<!-- name: 'Whole Milk', brand: 'La serenisima', servingSize: '200 ml', calories:
+'114', carbohidrates: '9', proteins: '6', totalFats: '6', -->

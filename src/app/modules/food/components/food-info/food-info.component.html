@@ -1,0 +1,44 @@
+<div class="food-description">
+  <h1>{{ food?.food_name }}</h1>
+  <div class="brand-and-serving">
+    @if (food?.food_type === "Brand") {
+    {{ food?.brand_name }}, {{ serving?.serving_description }}
+    } @else{
+    {{ food?.food_type }}, {{ serving?.serving_description }}
+    }
+  </div>
+</div>
+<div class="item-container">
+  <div class="info-container">
+    <h2 class="title">Calories and macronutrients</h2>
+    <div class="macros-wheel">
+      <app-nutrient-circle
+        [showKcalSpan]="true"
+        [calories]="serving?.calories"
+        [nutrients]="{
+          protein: serving?.protein,
+          carbs: serving?.carbohydrate,
+          fats: serving?.fat
+        }"
+      ></app-nutrient-circle>
+    </div>
+    <div class="macros-info">
+      <div class="info">
+        <p class="percentage Carbs">{{ nutrientsPercentage?.carbs }}%</p>
+        <p class="amount">{{ serving?.carbohydrate }}g</p>
+        <p class="type">Carbohidrates</p>
+      </div>
+      <div class="info">
+        <p class="percentage Fats">{{ nutrientsPercentage?.fats }}%</p>
+        <p class="amount">{{ serving?.fat }}g</p>
+        <p class="type">Fats</p>
+      </div>
+      <div class="info">
+        <p class="percentage Proteins">{{ nutrientsPercentage?.protein }}%</p>
+        <p class="amount">{{ serving?.protein }}g</p>
+        <p class="type">Proteins</p>
+      </div>
+    </div>
+  </div>
+</div>
+<app-button-add-to [food]="food" [serving]="serving"></app-button-add-to>
