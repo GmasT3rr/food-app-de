@@ -238,7 +238,7 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
         <button mat-button style="margin-left: auto;" (click)="saveSettings()"
-        [disabled]="userCaloriesToConsume == 0"
+        [disabled]="userCaloriesToConsume == 0 || !healthProfileForm.valid || !goalsProfileForm.valid"
         >Save</button>
       </div>
     </mat-step>

@@ -47,18 +47,8 @@ export class SettingsComponent implements OnInit {
   userCalculatedTMB = 0;
   userCaloriesToConsume = 0;
   //
-  healthProfileForm = this._formBuilder.group({
-    birthday: [null, Validators.required, this.birthdayValidator()],
-    gender: [null, Validators.required],
-    height: [null, Validators.required],
-    weight: [null, Validators.required],
-  });
-  goalsProfileForm = this._formBuilder.group({
-    goal: [null, Validators.required],
-    goalSpeed: ['Normal', Validators.required],
-    activityLevel: [null, Validators.required],
-    dietType: ['Balanced', Validators.required],
-  });
+  healthProfileForm!: FormGroup 
+  goalsProfileForm!: FormGroup
 
   proteinPercentage = 0.25;
   fatPercentage = 0.275;
@@ -92,28 +82,42 @@ export class SettingsComponent implements OnInit {
     if (item) {
       const config = JSON.parse(item);
       // Establecer los valores de los formularios basados en el archivo config
-      this.healthProfileForm = this._formBuilder.group({
-        birthday: [config.profile.birthday],
-        gender: [config.profile.gender],
-        height: [config.profile.height],
-        weight: [config.profile.weight],
-      });
+    this.healthProfileForm = this._formBuilder.group({
+      birthday: [config.profile.birthday, Validators.required],
+      gender: [config.profile.gender, Validators.required],
+      height: [config.profile.height, Validators.required],
+      weight: [config.profile.weight, Validators.required],
+    });
 
-      this.goalsProfileForm = this._formBuilder.group({
-        goal: [config.goal.goal],
-        goalSpeed: [config.goal.goalSpeed],
-        activityLevel: [config.goal.activityLevel],
-        dietType: [config.goal.dietType],
-      });
+    this.goalsProfileForm = this._formBuilder.group({
+      goal: [config.goal.goal, Validators.required],
+      goalSpeed: [config.goal.goalSpeed, Validators.required],
+      activityLevel: [config.goal.activityLevel, Validators.required],
+      dietType: [config.goal.dietType, Validators.required],
+    });
 
       this.proteinPercentage = config.macrosPercentage.protein;
       this.fatPercentage = config.macrosPercentage.fat;
       this.carbPercentage = config.macrosPercentage.carbs;
       this.userCalculatedTMB = config.tmb;
-      this.userCaloriesToConsume = config.dailyIntake;
+      this.userCaloriesToConsume = config.dailyIntake;      
 
       // Calcula la distribución de macronutrientes basada en los valores establecidos
       this.calculateMacronutrientDistribution(this.userCaloriesToConsume);
+    }
+    else {
+      this.healthProfileForm = this._formBuilder.group({
+        birthday: [null, Validators.required, this.birthdayValidator()],
+        gender: [null, Validators.required],
+        height: [null, Validators.required],
+        weight: [null, Validators.required],
+      });
+      this.goalsProfileForm = this._formBuilder.group({
+        goal: [null, Validators.required],
+        goalSpeed: ['Normal', Validators.required],
+        activityLevel: [null, Validators.required],
+        dietType: ['Balanced', Validators.required],
+      });
     }
   }
   //
