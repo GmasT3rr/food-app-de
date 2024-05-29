@@ -14,12 +14,11 @@ export class AppComponent implements OnInit {
   private _authService = inject(AuthService);
 
   ngOnInit(): void {
-    // this._authService.clearToken();
+    this._authService.getToken();
     this.startTokenCheck();
   }
 
   startTokenCheck() {
-    this._authService.getToken();
     setInterval(() => {
       if (this._authService.isTokenExpired()) {
         console.log('Token expired, fetching new token...');

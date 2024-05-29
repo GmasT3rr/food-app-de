@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { SearchDrawerComponent } from './components/search-drawer/search-drawer.component';
 import { CommonModule } from '@angular/common';
@@ -12,8 +12,11 @@ import { ConfigDialogComponent } from './config-dialog/config-dialog.component';
   templateUrl: './food-list.component.html',
   styleUrl: './food-list.component.scss',
 })
-export class FoodListComponent {
-  constructor(public dialog: Dialog) {
+export class FoodListComponent implements OnInit {
+  
+  constructor(public dialog: Dialog) {}
+
+  ngOnInit(): void {
     const item = localStorage.getItem('config');
     if (!item) this.openDialog();
   }
@@ -21,7 +24,7 @@ export class FoodListComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open<string>(ConfigDialogComponent, {
       width: '100%',
-      height:'100vh'
+      height: '100vh',
     });
 
     dialogRef.closed.subscribe((result: any) => {
