@@ -10,16 +10,23 @@ import { AuthService } from './core/services/auth.service';
   template: `<app-layout></app-layout>`,
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy{
   private _authService = inject(AuthService);
+  private tokenCheckInterval: any;
 
   ngOnInit(): void {
     this._authService.getToken();
     this.startTokenCheck();
   }
 
+  ngOnDestroy(): void {
+    if (this.tokenCheckInterval) {
+      clearInterval(this.tokenCheckInterval);
+    }
+  }
+
   startTokenCheck() {
-    setInterval(() => {
+    this.tokenCheckInterval = setInterval(() => {
       if (this._authService.isTokenExpired()) {
         console.log('Token expired, fetching new token...');
         this._authService.getToken();
